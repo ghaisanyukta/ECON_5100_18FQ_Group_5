@@ -1,7 +1,21 @@
-library(here)
-library(foreign)
-
 # input Stata file
+
+
+#Region
+sec0a_data <- read.dta(here("raw_data/glss4","sec0a.dta"))
+
+# Household Roster
+sec1_data <- read.dta(here("raw_data/glss4","sec1.dta"))
+
+# Education: General Education
+sec2a_data <- read.dta(here("raw_data/glss4","sec2a.dta"))
+
+# Education: Educational Career
+sec2b_data <- read.dta(here("raw_data/glss4","sec2b.dta"))
+
+# Education: Literacy /Apprenticeship
+sec2c_data <- read.dta(here("raw_data/glss4","sec2c.dta"))
+
 # Employment: Screening questions and list of occupations in past 12 months
 sec4a_data <- read.dta(here("raw_data/glss4","sec4a.dta"))
 
@@ -37,6 +51,12 @@ sec6_data <- read.dta(here("raw_data/glss4","sec6.dta"))
 
 # Housing
 sec7_data <- read.dta(here("raw_data/glss4","sec7.dta"))
+
+
+#Aggregates
+agg2_data <- read.dta(here("raw_data/glss4/aggregates","agg2.dta"))
+
+
 
 
 #rm(list=ls())
