@@ -4,57 +4,57 @@ x <- c("region_id", "district_id", "region_name", "district_name")
 colnames(region) <- x
 
 # adding rows to dataframe
-region <- rbind(region, data.frame("region_id" = 03,
+region <- rbind(region, data.frame("region_id" = 01,
                                    "district_id" = 01,
                                    "region_name" = "Western Region",
                                    "district_name" = "Jomoro"))
 # adding rows to dataframe
-region <- rbind(region, data.frame("region_id" = 03,
+region <- rbind(region, data.frame("region_id" = 01,
                                    "district_id" = 02,
                                    "region_name" = "Western Region",
                                    "district_name" = "Nzema"))
 # adding rows to dataframe
-region <- rbind(region, data.frame("region_id" = 03,
+region <- rbind(region, data.frame("region_id" = 01,
                                    "district_id" = 03,
                                    "region_name" = "Western Region",
                                    "district_name" = "Ahanta West"))
 # adding rows to dataframe
-region <- rbind(region, data.frame("region_id" = 03,
+region <- rbind(region, data.frame("region_id" = 01,
                                    "district_id" = 04,
                                    "region_name" = "Western Region",
                                    "district_name" = "Shama-Ahanta East"))
 # adding rows to dataframe
-region <- rbind(region, data.frame("region_id" = 03,
+region <- rbind(region, data.frame("region_id" = 01,
                                    "district_id" = 05,
                                    "region_name" = "Western Region",
                                    "district_name" = "Mpohor-Wassa East"))
 # adding rows to dataframe
-region <- rbind(region, data.frame("region_id" = 03,
+region <- rbind(region, data.frame("region_id" = 01,
                                    "district_id" = 06,
                                    "region_name" = "Western Region",
                                    "district_name" = "Wassa West"))
 # adding rows to dataframe
-region <- rbind(region, data.frame("region_id" = 03,
+region <- rbind(region, data.frame("region_id" = 01,
                                    "district_id" = 07,
                                    "region_name" = "Western Region",
                                    "district_name" = "Wassa Amemfi"))
 # adding rows to dataframe
-region <- rbind(region, data.frame("region_id" = 03,
+region <- rbind(region, data.frame("region_id" = 01,
                                    "district_id" = 08,
                                    "region_name" = "Western Region",
                                    "district_name" = "Aowin-Suaman"))
 # adding rows to dataframe
-region <- rbind(region, data.frame("region_id" = 03,
+region <- rbind(region, data.frame("region_id" = 01,
                                    "district_id" = 09,
                                    "region_name" = "Western Region",
                                    "district_name" = "Juabeso-Bia"))
 # adding rows to dataframe
-region <- rbind(region, data.frame("region_id" = 03,
+region <- rbind(region, data.frame("region_id" = 01,
                                    "district_id" = 10,
                                    "region_name" = "Western Region",
                                    "district_name" = "Sefwi-Wiawso"))
 # adding rows to dataframe
-region <- rbind(region, data.frame("region_id" = 03,
+region <- rbind(region, data.frame("region_id" = 01,
                                    "district_id" = 11,
                                    "region_name" = "Western Region",
                                    "district_name" = "Bibiani/Anhwiaso/Wekwai"))
