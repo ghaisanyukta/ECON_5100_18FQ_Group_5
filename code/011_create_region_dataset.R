@@ -1,6 +1,6 @@
 # creating new data frame
 region <- data.frame(matrix(ncol = 4, nrow = 0))
-x <- c("region_id", "district_id", "region_name", "district_name")
+x <- c("region", "district", "region_name", "district_name")
 colnames(region) <- x
 
 # adding rows to dataframe
