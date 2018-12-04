@@ -17,3 +17,7 @@ agri_educ <- merge(x = agg2_data, y = educ_head, by = c('nh','clust'), all.x = T
 
 #merge two dataframes
 #educ_hh_head_region <- merge(educ_head, region_info_data, by=c("nh","clust"), all.x = TRUE)
+
+# merge region and region_info_data to have good names
+region_dist_data <- merge(x = region_info_data, y = region,
+                          by = c("region", "district"), all.x = TRUE)
