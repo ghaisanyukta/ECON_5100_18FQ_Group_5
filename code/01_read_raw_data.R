@@ -57,7 +57,13 @@ sec7_data <- read.dta(here("raw_data/glss4","sec7.dta"))
 agg2_data <- read.dta(here("raw_data/glss4/aggregates","agg2.dta"))
 
 
+#community input file
 
+#infrastructure data
+cs2_data <- read.dta(here("raw_data/glss4/community","cs2.dta"))
+
+#agricultural practices data
+cs5b_data <- read.dta(here("raw_data/glss4/community","cs5b.dta"))
 
 #rm(list=ls())
 
