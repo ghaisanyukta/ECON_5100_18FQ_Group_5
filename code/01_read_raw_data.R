@@ -56,6 +56,8 @@ sec7_data <- read.dta(here("raw_data/glss4","sec7.dta"))
 #Aggregates
 agg2_data <- read.dta(here("raw_data/glss4/aggregates","agg2.dta"))
 
+#income from renting out land/livestock and sharecropping at household level
+agg4_data <- read.dta(here("raw_data/glss4/aggregates","agg4.dta"))
 
 #community input file
 

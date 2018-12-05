@@ -29,3 +29,7 @@ region_dist_data <- merge(x = region_info_data, y = region,
 
 infrastructure_agricultural_practices_data <- merge(x = infrastructure_data, y = agricultural_practices_data,
                                                     by = c("region", "district", "eanum"), all = TRUE)
+
+# merge income at household level data with education by household head
+income_educ <- merge(x=agg4_data,y=educ_data, by = c('nh','clust'),all.x = TRUE) %>%
+                            select(nh, clust, imprt, highest_educ_level)

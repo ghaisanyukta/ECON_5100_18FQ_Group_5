@@ -36,3 +36,4 @@ agricultural_practices_data <- cs5b_data %>%
   rename(extension_centre = s5bq5, extension_centre_distance = s5bq6, cooperative = s5bq10,
          no_of_tractors = s5bq13, rice_husking_machine = s5bq14, chemical_fertilizer = s5bq15, 
          insecticides_herbicides = s5bq16, irrigated_fields = s5bq17)
+
