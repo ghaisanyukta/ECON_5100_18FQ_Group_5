@@ -25,8 +25,6 @@ region_info_data <- merge(x = region_info_data, y = loc2_data,
 region_dist_data <- merge(x = region_info_data, y = region,
                           by = c("region", "district"), all.x = TRUE)
 
-
-
 # Merge community data with the rest of the data using columns region / district / eanum
 # merge community data frames cs2_data and cs5b_data to have redion's infrastructure and agricultural data
 
