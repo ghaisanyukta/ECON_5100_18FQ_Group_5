@@ -48,8 +48,9 @@ infrastructure_data <- cs2_data %>%
 
 #colnames(cs5b_data)
 agricultural_practices_data <- cs5b_data %>%
-  select(region, district, eanum, s5bq5, s5bq6, s5bq10, s5bq13, s5bq14, s5bq15, s5bq16, s5bq17) %>%
+  select(region, district, eanum, s5bq5, s5bq6, s5bq10, s5bq13, s5bq14, s5bq15, s5bq16, s5bq17, s5bq24, s5bq25a, s5bq25b) %>%
   rename(extension_centre = s5bq5, extension_centre_distance = s5bq6, cooperative = s5bq10,
          no_of_tractors = s5bq13, rice_husking_machine = s5bq14, chemical_fertilizer = s5bq15, 
-         insecticides_herbicides = s5bq16, irrigated_fields = s5bq17)
+         insecticides_herbicides = s5bq16, irrigated_fields = s5bq17, plots_measured_units = s5bq24, 
+         length_conversion_to_metres = s5bq25a, width_consversion_to_metres = s5bq25b)
 
