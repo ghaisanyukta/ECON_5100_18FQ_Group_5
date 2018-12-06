@@ -9,6 +9,15 @@ educ_data <- sec2a_data %>%
          highest_educ_level = if_else((attended_school == 0), 0, highest_educ_level),
          highest_educ_qualification = if_else((attended_school == 0), 0, highest_educ_qualification))
 
+#Highest education per household Data
+# Select highest education per household while eliminating other educational levels
+# Here 96 stands for other education level
+highest_educ <- educ_data %>%
+  select(nh, clust, highest_educ_level) %>%
+  group_by(clust, nh) %>%
+  arrange(desc(highest_educ_level),.by_group = TRUE) %>%
+  filter(row_number() == 1, highest_educ_level < 96) 
+
 # Clean Region Data
 region_info_data <- sec0a_data %>%
                 select(region, district, nh, clust, loc2, loc5, loc3)
