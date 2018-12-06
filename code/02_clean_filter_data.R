@@ -26,7 +26,8 @@ agri_data <- agg2_data %>%
 
 # Clean Region Data
 region_info_data <- sec0a_data %>%
-                select(region, district, nh, clust, loc2, loc5, loc3)
+                select(region, district, nh, clust, loc2, loc5, loc3) %>%
+                filter(loc2, loc2 == "2")
 
 # Get head of households
 hh_head_data <- sec1_data %>%
