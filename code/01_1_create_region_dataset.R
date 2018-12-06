@@ -5,13 +5,13 @@ colnames(region) <- x
 
 # creaing new dataframe for Household Classification (loc2, loc3, loc5)
 loc2_data <- data.frame(matrix(ncol = 2, nrow = 0))
-y <- c("code", "class")
+y <- c("loc2", "class")
 colnames(loc2_data) <- y
 
 # adding rows to dataframe
-loc2_data <- rbind(loc2_data, data.frame("code" = 01,
+loc2_data <- rbind(loc2_data, data.frame("loc2" = 01,
                                          "class" = "Urban"))
-loc2_data <- rbind(loc2_data, data.frame("code" = 02,
+loc2_data <- rbind(loc2_data, data.frame("loc2" = 02,
                                          "class" = "Rural"))
 
 # adding rows to dataframe
