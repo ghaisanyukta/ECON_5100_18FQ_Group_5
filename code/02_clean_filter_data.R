@@ -7,7 +7,8 @@ educ_data <- sec2a_data %>%
          highest_educ_qualification = s2aq3) %>%
   mutate(attended_school = if_else(attended_school == 1, 1, 0),
          highest_educ_level = if_else((attended_school == 0), 0, highest_educ_level),
-         highest_educ_qualification = if_else((attended_school == 0), 0, highest_educ_qualification))
+         highest_educ_qualification = if_else((attended_school == 0), 0, highest_educ_qualification)) %>%
+  filter(highest_educ_level < 96)
 
 #Highest education per household Data
 # Select highest education per household while eliminating other educational levels
@@ -16,7 +17,12 @@ highest_educ <- educ_data %>%
   select(nh, clust, highest_educ_level) %>%
   group_by(clust, nh) %>%
   arrange(desc(highest_educ_level),.by_group = TRUE) %>%
-  filter(row_number() == 1, highest_educ_level < 96) 
+  filter(row_number() == 1) 
+
+# Filter out top and bottom 5 rows to eliminate outliers
+agri_data <- agg2_data %>%
+  arrange(agri1c) %>%
+  filter(row_number() > 5 & row_number() <= n()-5 )
 
 # Clean Region Data
 region_info_data <- sec0a_data %>%
