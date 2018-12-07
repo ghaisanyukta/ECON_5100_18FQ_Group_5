@@ -52,6 +52,9 @@ sec6_data <- read.dta(here("raw_data/glss4","sec6.dta"))
 # Housing
 sec7_data <- read.dta(here("raw_data/glss4","sec7.dta"))
 
+# Farm land size data
+sec8b_data <- read.dta(here("raw_data/glss4","sec8b.dta"))
+
 
 #Aggregates
 agg2_data <- read.dta(here("raw_data/glss4/aggregates","agg2.dta"))
