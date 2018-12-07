@@ -40,6 +40,13 @@ empl_data <- sec4b_data %>%
               filter(s4bq8 == 5 | s4bq8 == 6) %>%
               rename(employment_status = s4bq8)
 
+
+# Get size of agricultural lands
+farm_land_size_data <- sec8b_data %>%
+  select(nh, s8bq4a, s8bq4b, clust) %>%
+  rename(farm_land_size = s8bq4a, unite_of_measure = s8bq4b)
+
+
 # Clean and filter community data
 # Merge using columns region / district / eanum
 
