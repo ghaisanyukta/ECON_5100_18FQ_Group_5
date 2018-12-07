@@ -43,6 +43,10 @@ income_educ <- merge(x=agg4_data,y=educ_data, by = c('nh','clust'),all.x = TRUE)
                             select(nh, clust, imprt, highest_educ_level)
 
 
+# merge employment in agriculture in at household level with education with household head
+
+empl_educ <- merge(x = empl_data, y = educ_data, by = c('nh','clust'),all.x = TRUE) %>%
+              select(nh, clust, employment_status, highest_educ_level)
 
 # merging agri_hh_educ (agri prof by educ of hh head) with region_info_data (rural data with good names)
 agri_hh_educ_rural <- merge(x = agri_hh_educ, y = region_info_data,
