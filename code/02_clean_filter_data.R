@@ -1,3 +1,7 @@
+# Clean Region Data only consider where locality is rural
+region_info_data <- sec0a_data %>%
+  select(region, district, nh, clust, loc2) %>%
+  filter(loc2, loc2 == "2")
 
 # Clean and filter education data
 #colnames(sec2a_data)
@@ -24,16 +28,10 @@ agri_data <- agg2_data %>%
   arrange(agri1c) %>%
   filter(row_number() > 5 & row_number() <= n()-5 )
 
-# Clean Region Data
-region_info_data <- sec0a_data %>%
-                select(region, district, nh, clust, loc2, loc5, loc3) %>%
-                filter(loc2, loc2 == "2")
-
 # Get head of households
 hh_head_data <- sec1_data %>%
                 select(nh, clust, pid, rel) %>%
                 filter(rel, rel == "1")
-
 
 
 # Clean and filter community data
