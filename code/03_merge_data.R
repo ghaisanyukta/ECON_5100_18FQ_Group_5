@@ -11,9 +11,13 @@ educ_head <- educ_hh_head %>%
 agri_hh_educ <- merge(x = agri_data, y = educ_head, by = c('clust','nh'), all.x = TRUE) %>%
               select(nh, clust, agri1c, hh_highest_educ = highest_educ_level)
 
-# Merge aggricultural profit with highest education in an household
+# Merge aggricultural profit with highest education in a household
 agri_educ <- merge(x = agri_hh_educ, y = highest_educ, by = c('clust','nh'), all.x = TRUE) %>%
   select(nh, clust, agri1c, hh_highest_educ, highest_educ_level)
+
+# Merge agricultural profit with gender in a household head
+agri_hh_gender <- merge(x= agri_hh_educ, y = gender_data, by = c('nh','clust'),all.x = TRUE) %>%
+                        select(nh, clust, agri1c, sex)
 
 # select only regions which is classified as Rural
 # merge region and region_info_data to have good names
