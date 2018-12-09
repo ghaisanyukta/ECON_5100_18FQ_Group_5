@@ -30,8 +30,12 @@ agri_educ_gender_employ_region <- merge(agri_educ_gender_employ, region_info_dat
 agri_educ_gender_employ_region_income <- merge(x=agri_educ_gender_employ_region,
                                                y=agg4_data, by = c('clust','nh'),all.x = TRUE)
 
+# Distinct Region, District and eanums
+distinct_region_district_eanum <- distinct(region_info_data, region,district,eanum, .keep_all= TRUE)
+                                  
+
 # Merge infrastructure with region to get clust and nh
-infrastructure_data_region <- merge(x=region_info_data,
+infrastructure_data_region <- merge(x=distinct_region_district_eanum,
                                     y=infrastructure_data,
                                     by=c('region','district','eanum'),
                                     all.x = TRUE)
@@ -42,14 +46,12 @@ agricultural_practices_infrastructure_data_region <- merge(x=infrastructure_data
                                      all.x = TRUE)
 
 # Merge agri_educ_gender_employ_region_income with infrastructure data
-agri_educ_gender_employ_region_income_infra <- merge(x=agri_educ_gender_employ_region_income,
+agri_educ_gender_employ_region_income_infra_agripractice <- merge(x=agri_educ_gender_employ_region_income,
                                                y= agricultural_practices_infrastructure_data_region, 
                                                by = c('clust','nh','eanum'),
                                                all.x = TRUE)
 
 base <- agri_educ_gender_employ_region_income_infra_agripractice
-
-
 
 
   
