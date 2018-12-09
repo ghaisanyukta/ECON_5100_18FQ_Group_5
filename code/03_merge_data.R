@@ -27,19 +27,20 @@ region_info_data <- merge(x = region_info_data, y = region,
 #merge two dataframes agri_educ with region_info_data (rural regions)
 agri_educ_region <- merge(agri_educ, region_info_data, by=c("clust","nh"), all.x = TRUE)
 
+# merge Actual and imputed rental income at household level data with agri_educ_region
+agri_educ_region_income <- merge(x=agri_educ_region,y=agg4_data, by = c('clust','nh'),all.x = TRUE)
+
 # Merge community data with the rest of the data using columns region / district / eanum
 # merge community data frames cs2_data and cs5b_data to have region's infrastructure and agricultural data
 
 infrastructure_agricultural_practices_data <- merge(x = infrastructure_data, y = agricultural_practices_data,
                                                     by = c("region", "district", "eanum"), all = TRUE)
 
-# merge income at household level data with education by household head
-income_educ <- merge(x=agg4_data,y=educ_data, by = c('nh','clust'),all.x = TRUE) %>%
-                            select(nh, clust, imprt, highest_educ_level)
+
 
 
 # merge employment in agriculture in at household level with education with household head
-empl_educ <- merge(x = empl_data, y = educ_data, by = c('nh','clust'),all.x = TRUE) %>%
+empl_educ <- merge(x = empl_data, y = educ_data, by = c('clust','nh'),all.x = TRUE) %>%
               select(nh, clust, employment_status, highest_educ_level)
 
 # merging agri_hh_educ_rural with community practice data left outer join needed, below code not working
