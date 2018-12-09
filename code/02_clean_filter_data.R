@@ -39,7 +39,7 @@ gender_data <- sec1_data %>%
 
 # Clean and filter employment data
 empl_data <- sec4b_data %>%
-              select(nh,clust,s4bq8) %>%
+              select(nh,clust, pid ,s4bq8) %>%
               filter(s4bq8 == 5 | s4bq8 == 6) %>%
               rename(employment_status = s4bq8)
 
