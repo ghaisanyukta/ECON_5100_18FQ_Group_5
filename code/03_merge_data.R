@@ -52,7 +52,7 @@ agricultural_practices_infrastructure_data_region <- agricultural_practices_infr
 # Merge agri_educ_gender_employ_region_income with infrastructure data
 agri_educ_gender_employ_region_income_infra_agripractice <- merge(x=agri_educ_gender_employ_region_income,
                                                y= agricultural_practices_infrastructure_data_region, 
-                                               by = c('clust','nh','eanum'),
+                                               by = c('clust','nh','eanum','region','district','ez','loc2'),
                                                all.x = TRUE)
 
 base <- agri_educ_gender_employ_region_income_infra_agripractice
