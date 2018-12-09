@@ -33,8 +33,11 @@ hh_head_data <- sec1_data %>%
                 select(nh, clust, pid, rel) %>%
                 filter(rel, rel == "1")
 
-# Clean and filter employment data
+# Get gender of household member
+gender_data <- sec1_data %>%
+  select(nh,pid,clust,sex) 
 
+# Clean and filter employment data
 empl_data <- sec4b_data %>%
               select(nh,clust,s4bq8) %>%
               filter(s4bq8 == 5 | s4bq8 == 6) %>%
