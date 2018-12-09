@@ -45,6 +45,10 @@ agricultural_practices_infrastructure_data_region <- merge(x=infrastructure_data
                                      by=c('region','district','eanum'),
                                      all.x = TRUE)
 
+# Remove duplicates from agricultural_practices_infrastructure_data_region data
+agricultural_practices_infrastructure_data_region <- agricultural_practices_infrastructure_data_region[
+                                                    !duplicated(agricultural_practices_infrastructure_data_region), ]
+
 # Merge agri_educ_gender_employ_region_income with infrastructure data
 agri_educ_gender_employ_region_income_infra_agripractice <- merge(x=agri_educ_gender_employ_region_income,
                                                y= agricultural_practices_infrastructure_data_region, 
