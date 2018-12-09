@@ -11,26 +11,10 @@ educ_head <- educ_hh_head %>%
 agri_hh_educ <- merge(x = agri_data, y = educ_head, by = c('clust','nh'), all.x = TRUE) %>%
               select(nh, clust, agri1c, hh_highest_educ = highest_educ_level)
 
-# Merge aggricultural profit with highest education in a household
+# Merge aggricultural profit with highest education in an household
 agri_educ <- merge(x = agri_hh_educ, y = highest_educ, by = c('clust','nh'), all.x = TRUE) %>%
   select(nh, clust, agri1c, hh_highest_educ, highest_educ_level)
 
-<<<<<<< HEAD
-=======
-# Merge agricultural profit with gender in a household head
-agri_hh_gender <- merge(x= agri_hh_educ, y = gender_data, by = c('nh','clust'),all.x = TRUE) %>%
-                        select(nh, clust, agri1c, sex)
-
-# select only regions which is classified as Rural
-# merge region and region_info_data to have good names
-region_info_data <- merge(x = region_info_data, y = loc2_data,
-                          by = c("loc2"), all.x = TRUE)
-region_info_data <- merge(x = region_info_data, y = region,
-                          by = c("region", "district"), all.x = TRUE) %>%
-  select(nh, clust, region, district, region_name, district_name, locality)
-
-
->>>>>>> c405ff1a34d7488829b2dc1e6b20cb4bab45d14a
 #merge two dataframes agri_educ with region_info_data (rural regions)
 agri_educ_region <- merge(agri_educ, region_info_data, by=c("clust","nh"), all.x = TRUE)
 
@@ -45,11 +29,11 @@ infrastructure_agricultural_practices_data <- merge(x = infrastructure_data, y =
 agri_educ_region_income_community <- merge(x = agri_educ_region_income, 
                                                            y = infrastructure_agricultural_practices_data, by = c("region", "district", "eanum"), all.x = TRUE)
 
-
 # Merge agri_educ_region_income_community with employment
 agri_educ_region_income_community_employ <- merge(x = agri_educ_region_income_community,
                                                   y = empl_data, by = c('clust','nh'),all.x = TRUE)
 
-  
-  
+# Merge agricultural profit with gender in a household head
+agri_hh_gender <- merge(x= agri_hh_educ, y = gender_data, by = c('nh','clust'),all.x = TRUE) %>%
+  select(nh, clust, agri1c, sex)
   
