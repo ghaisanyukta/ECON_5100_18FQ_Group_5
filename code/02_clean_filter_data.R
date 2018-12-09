@@ -54,7 +54,7 @@ farm_land_size_data <- sec8b_data %>%
 infrastructure_data <- cs2_data %>%
   select(region, district, eanum, s2q1a, s2q4, s2q5, s2q8, s2q9, s2q10, s2q11, s2q23, s2q25) %>%
   rename(primary_occupation = s2q1a, motorable_road = s2q4, motorable_road_distance = s2q5, electricity_y_n = s2q8,
-         electricity_most_few = s2q9, water_y_n = s2q10, water_most_few = s2q11, public_transport_y_n = s2q23
+         electricity_most_few = s2q9, water_y_n = s2q10, water_most_few = s2q11, public_transport_y_n = s2q23,
          public_transport_distance = s2q25)
 
 #colnames(cs5b_data)
