@@ -10,34 +10,39 @@ educ_gender_hh_head <- merge(x=educ_hh_head, y = gender_data,
 educ_gender_hh_head_employ <- merge(x = educ_gender_hh_head,
                                     y = empl_data, by = c('clust','nh', 'pid'),all.x = TRUE)
 
-# drop irrelevant columns from "educ_hh_head"
 # Education of each household using head of household
-educ_head_gender <- educ_gender_hh_head_employ %>%
+# drop irrelevant columns from "educ_gender_hh_head_employ"
+educ_gender_hh_head_employ <- educ_gender_hh_head_employ %>%
               select(nh, clust, highest_educ_level, sex, employment_status)
 
 # Merge aggricultural profit with education by household head 
-agri_hh_educ <- merge(x = agri_data, y = educ_head_gender, by = c('clust','nh'), all.x = TRUE) %>%
-              select(nh, clust, agri1c, hh_highest_educ = highest_educ_level, sex_hh = sex)
+agri_hh_educ_gender_employ <- merge(x = agri_data, y = educ_gender_hh_head_employ, by = c('clust','nh'), all.x = TRUE) %>%
+              select(nh, clust, agri1c, hh_highest_educ = highest_educ_level, sex_hh = sex, employment_status)
 
 # Merge aggricultural profit with highest education in an household
-agri_educ <- merge(x = agri_hh_educ, y = highest_educ, by = c('clust','nh'), all.x = TRUE) %>%
-  select(nh, clust, agri1c, hh_highest_educ, highest_educ_level, sex_hh)
+agri_educ_gender_employ <- merge(x = agri_hh_educ_gender_employ, y = highest_educ, by = c('clust','nh'), all.x = TRUE) %>%
+            select(nh, clust, agri1c, hh_highest_educ, highest_educ_level, sex_hh)
 
-#merge two dataframes agri_educ with region_info_data (rural regions)
-agri_educ_region <- merge(agri_educ, region_info_data, by=c("clust","nh"), all.x = TRUE)
+#merge two dataframes agri_educ_gender_employ with region_info_data (rural regions)
+agri_educ_gender_employ_region <- merge(agri_educ_gender_employ, region_info_data, by=c("clust","nh"), all.x = TRUE)
 
-# merge Actual and imputed rental income at household level data with agri_educ_region
-agri_educ_region_income <- merge(x=agri_educ_region,y=agg4_data, by = c('clust','nh'),all.x = TRUE)
+# merge Actual and imputed rental income at household level data with agri_educ_gender_employ_region
+agri_educ_gender_employ_region_income <- merge(x=agri_educ_gender_employ_region,
+                                               y=agg4_data, by = c('clust','nh'),all.x = TRUE)
 
-# Merge community data with the rest of the data using columns region / district / eanum
-infrastructure_agricultural_practices_data <- merge(x = infrastructure_data, y = agricultural_practices_data,
-                                                    by = c("region", "district", "eanum"), all = TRUE)
+# Merge agri_educ_gender_employ_region_income with infrastructure data
+agri_educ_gender_employ_region_income_infra <- merge(x=agri_educ_gender_employ_region_income,
+                                               y= infrastructure_data, 
+                                               by.x = c('clust','nh','eanum'),
+                                               all.x = TRUE)
 
-# Merge community with agri_educ_region_income 
-agri_educ_region_income_community <- merge(x = agri_educ_region_income, 
-                                           y = infrastructure_agricultural_practices_data, 
-                                           by = c("region", "district", "eanum"), all.x = TRUE)
+# Merge agri_educ_gender_employ_region_income_infra with agricultural practices
+agri_educ_gender_employ_region_income_infra_agripractice <- merge(x=agri_educ_gender_employ_region_income_infra,
+                                                                  y= agricultural_practices_data, 
+                                                                  by.x = c('clust','nh','eanum'),
+                                                                  all.x = TRUE)
 
+base <- agri_educ_gender_employ_region_income_infra_agripractice
 
 
 
