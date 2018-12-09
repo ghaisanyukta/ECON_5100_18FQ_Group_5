@@ -1,6 +1,6 @@
 # Clean Region Data only consider where locality is rural
 region_info_data <- sec0a_data %>%
-  select(region, district, nh, clust, ez, loc2) %>%
+  select(region, district, nh, clust, ez, loc2, eanum) %>%
   filter(loc2, loc2 == "2")
 
 # Clean and filter education data
