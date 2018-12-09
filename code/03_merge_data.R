@@ -30,17 +30,22 @@ agri_educ_gender_employ_region <- merge(agri_educ_gender_employ, region_info_dat
 agri_educ_gender_employ_region_income <- merge(x=agri_educ_gender_employ_region,
                                                y=agg4_data, by = c('clust','nh'),all.x = TRUE)
 
+# Merge infrastructure with region to get clust and nh
+infrastructure_data_region <- merge(x=region_info_data,
+                                    y=infrastructure_data,
+                                    by=c('region','district','eanum'),
+                                    all.x = TRUE)
+  
+agricultural_practices_infrastructure_data_region <- merge(x=infrastructure_data_region,
+                                     y=agricultural_practices_data,
+                                     by=c('region','district','eanum'),
+                                     all.x = TRUE)
+
 # Merge agri_educ_gender_employ_region_income with infrastructure data
 agri_educ_gender_employ_region_income_infra <- merge(x=agri_educ_gender_employ_region_income,
-                                               y= infrastructure_data, 
-                                               by.x = c('clust','nh','eanum'),
+                                               y= agricultural_practices_infrastructure_data_region, 
+                                               by = c('clust','nh','eanum'),
                                                all.x = TRUE)
-
-# Merge agri_educ_gender_employ_region_income_infra with agricultural practices
-agri_educ_gender_employ_region_income_infra_agripractice <- merge(x=agri_educ_gender_employ_region_income_infra,
-                                                                  y= agricultural_practices_data, 
-                                                                  by.x = c('clust','nh','eanum'),
-                                                                  all.x = TRUE)
 
 base <- agri_educ_gender_employ_region_income_infra_agripractice
 
