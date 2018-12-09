@@ -1,3 +1,7 @@
+# Clean Region Data only consider where locality is rural
+region_info_data <- sec0a_data %>%
+  select(region, district, nh, clust, EZ, loc2) %>%
+  filter(loc2, loc2 == "2")
 
 # Clean and filter education data
 #colnames(sec2a_data)
@@ -24,15 +28,23 @@ agri_data <- agg2_data %>%
   arrange(agri1c) %>%
   filter(row_number() > 5 & row_number() <= n()-5 )
 
-# Clean Region Data
-region_info_data <- sec0a_data %>%
-                select(region, district, nh, clust, loc2, loc5, loc3)
-
 # Get head of households
 hh_head_data <- sec1_data %>%
                 select(nh, clust, pid, rel) %>%
                 filter(rel, rel == "1")
 
+# Clean and filter employment data
+
+empl_data <- sec4b_data %>%
+              select(nh,clust,s4bq8) %>%
+              filter(s4bq8 == 5 | s4bq8 == 6) %>%
+              rename(employment_status = s4bq8)
+
+
+# Get size of agricultural lands
+farm_land_size_data <- sec8b_data %>%
+  select(nh, s8bq4a, s8bq4b, clust) %>%
+  rename(farm_land_size = s8bq4a, unite_of_measure = s8bq4b)
 
 
 # Clean and filter community data
@@ -40,15 +52,16 @@ hh_head_data <- sec1_data %>%
 
 #colnames(cs2_data)
 infrastructure_data <- cs2_data %>%
-  select(region, district, eanum, s2q4, s2q5, s2q8, s2q9, s2q10, s2q11, s2q25) %>%
-  rename(motorable_road = s2q4, motorable_road_distance = s2q5, electricity_y_n = s2q8,
-         electricity_most_few = s2q9, water_y_n = s2q10, water_most_few = s2q11, 
+  select(region, district, eanum, s2q1a, s2q4, s2q5, s2q8, s2q9, s2q10, s2q11, s2q23, s2q25) %>%
+  rename(primary_occupation = s2q1a, motorable_road = s2q4, motorable_road_distance = s2q5, electricity_y_n = s2q8,
+         electricity_most_few = s2q9, water_y_n = s2q10, water_most_few = s2q11, public_transport_y_n = s2q23
          public_transport_distance = s2q25)
 
 #colnames(cs5b_data)
 agricultural_practices_data <- cs5b_data %>%
-  select(region, district, eanum, s5bq5, s5bq6, s5bq10, s5bq13, s5bq14, s5bq15, s5bq16, s5bq17) %>%
+  select(region, district, eanum, s5bq5, s5bq6, s5bq10, s5bq13, s5bq14, s5bq15, s5bq16, s5bq17, s5bq18, s5bq24, s5bq25a, s5bq25b) %>%
   rename(extension_centre = s5bq5, extension_centre_distance = s5bq6, cooperative = s5bq10,
          no_of_tractors = s5bq13, rice_husking_machine = s5bq14, chemical_fertilizer = s5bq15, 
-         insecticides_herbicides = s5bq16, irrigated_fields = s5bq17)
+         insecticides_herbicides = s5bq16, irrigated_fields = s5bq17, rainfall_more_less = s5bq18, 
+         plots_measured_units = s5bq24, length_conversion_to_metres = s5bq25a, width_consversion_to_metres = s5bq25b)
 

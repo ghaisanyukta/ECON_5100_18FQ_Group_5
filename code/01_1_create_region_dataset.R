@@ -1,7 +1,18 @@
-# creating new data frame
+# creating new data frame for district and region
 region <- data.frame(matrix(ncol = 4, nrow = 0))
 x <- c("region", "district", "region_name", "district_name")
 colnames(region) <- x
+
+# creaing new dataframe for Household localityification (loc2, loc3, loc5)
+loc2_data <- data.frame(matrix(ncol = 2, nrow = 0))
+y <- c("loc2", "locality")
+colnames(loc2_data) <- y
+
+# adding rows to dataframe
+loc2_data <- rbind(loc2_data, data.frame("loc2" = 01,
+                                         "locality" = "Urban"))
+loc2_data <- rbind(loc2_data, data.frame("loc2" = 02,
+                                         "locality" = "Rural"))
 
 # adding rows to dataframe
 region <- rbind(region, data.frame("region" = 01,
@@ -568,4 +579,6 @@ region <- rbind(region, data.frame("region" = 06,
                                    "district" = 18,
                                    "region_name" = "ASHANTI Region",
                                    "district_name" = "Ahafo Ano North"))
+
+
 
