@@ -65,8 +65,8 @@ agri_educ_gender_employ_region_income_infra_agripractice <- merge(x=agri_educ_ge
 
 base <- agri_educ_gender_employ_region_income_infra_agripractice %>%
   select(agri1c, hh_highest_educ, highest_educ_level, hh_is_male, employment_status, 
-         imprt, motorable_road, electricity_y_n, water_y_n, public_transport_y_n,
-         extension_centre, cooperative, no_of_tractors, rice_husking_machine, chemical_fertilizer,
-         insecticides_herbicides, irrigated_fields, region, ez) %>%
-  rename(agriculture_profit = agri1c) %>%
+         imprt, motorable_road_y, electricity_y, water_y, public_transport_y,
+         extension_centre_y, cooperative_y, no_of_tractors, rice_husking_machine_y, 
+         chemical_fertilizer_y, insecticides_herbicides_y, irrigated_fields_y, region, ez) %>%
+  rename(agriculture_profit = agri1c, imputed_income = imprt) %>%
   drop_na()
