@@ -6,6 +6,10 @@ educ_hh_head <- merge(x = hh_head_data, y = educ_data, by = c('clust', 'nh','pid
 educ_gender_hh_head <- merge(x=educ_hh_head, y = gender_data, 
                         by = c("clust", "nh", "pid"), all.x = TRUE)
 
+# Merge employment data
+empl_data <- merge(x=empl_occupation_data,
+                   y=empl_status_data, by = c('clust','nh', 'pid'),all.x = TRUE)
+
 # Merge household head with employment of head
 educ_gender_hh_head_employ <- merge(x = educ_gender_hh_head,
                                     y = empl_data, by = c('clust','nh', 'pid'),all.x = TRUE)
