@@ -23,3 +23,6 @@ qplot(std_res_model1,
 ggplot(model1, 
        aes(x=fit_model1, y=std_res_model1)) +
   geom_point(shape=1) 
+
+
+# Analysis of dummies
