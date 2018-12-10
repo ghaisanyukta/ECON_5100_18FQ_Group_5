@@ -58,26 +58,21 @@ empl_status_data <- sec4b_data %>%
 
 # Get size of agricultural lands
 farm_land_size_data <- sec8b_data %>%
-  select(nh, s8bq4a, s8bq4b, clust) %>%
-  rename(owned_land_size = s8bq4a, unit_of_measurement = s8bq4b) %>%
+  select(nh, s8bq4a, s8bq4b, clust, s8bq8) %>%
+  rename(land_size = s8bq4a, unit_of_measurement = s8bq4b, own_status = s8bq8) %>%
   filter(unit_of_measurement,unit_of_measurement != 4)
 
+# convert farm land area to a common unit of measurement (acres)
 farm_land_size_data <- merge(x=farm_land_size_data, 
                              y=plot_area_conversion, 
                              by=c('unit_of_measurement'),
                              all.x = TRUE) 
 
-farm_land_size_data <- farm_land_size_data %>%
-                        mutate(area_acres = owned_land_size * conversion_acres)
-  
-farm_land_size_data <- farm_land_size_data %>% 
-                      group_by(clust,nh) %>% 
-                      summarise(land_owned_acres = sum(area_acres))
-
-# rented land rented_y S8AQ13, rented_area S8AQ14, rented_land_size = s8aq14, rented_y = s8aq13
-
 # summing up all the land sizes of farm_land_size_data
-
+farm_land_size_data <- farm_land_size_data %>%
+                      mutate(area_acres = land_size * conversion_acres)%>% 
+                      group_by(clust,nh) %>% 
+                      summarise(farm_area_acres = sum(area_acres))
 
 # Clean and filter community data
 # Merge using columns region / district / eanum

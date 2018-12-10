@@ -34,15 +34,11 @@ agri_educ_gender_employ_region <- merge(agri_educ_gender_employ, region_info_dat
 agri_educ_gender_employ_region_income <- merge(x=agri_educ_gender_employ_region,
                                                y=agg4_data, by = c('clust','nh'),all.x = TRUE)
 
-# Distinct Region, District and eanums
-#distinct_region_district_eanum <- distinct(region_info_data, region,district,eanum, .keep_all= TRUE)
-                                  
+# merge agricultural profit with land area
+agri_land_data <- merge(x = agri_data, y = farm_land_size_data,
+                        by = c('clust', 'nh'), all = TRUE)[,c("clust","nh","farm_area_acres")]
 
-# Merge infrastructure with region to get clust and nh
-# infrastructure_data_region_farming <- merge(x=distinct_region_district_eanum,
-#                                     y=infrastructure_data,
-#                                     by=c('region','district','eanum'),
-#                                     all.x = TRUE)
+
 infrastructure_data_region_farming <- merge(x=infrastructure_data,
                                    y=region_info_data,
                                    by=c('region','district','eanum'),
@@ -63,10 +59,16 @@ agri_educ_gender_employ_region_income_infra_agripractice <- merge(x=agri_educ_ge
                                                by = c('clust','nh','eanum','region','district','ez','loc2'),
                                                all.x = TRUE)
 
-base <- agri_educ_gender_employ_region_income_infra_agripractice %>%
+agri_educ_gender_employ_region_income_infra_agripractice_area <- merge(x = agri_educ_gender_employ_region_income_infra_agripractice,
+                                                                       y = agri_land_data, 
+                                                                       by = c('clust', 'nh'),
+                                                                       all.x = TRUE)
+
+base <- agri_educ_gender_employ_region_income_infra_agripractice_area %>%
   select(agri1c, hh_highest_educ, highest_educ_level, hh_is_male, employment_status,
          agricultural_activities, imprt, motorable_road_y, electricity_y, water_y, public_transport_y,
          extension_centre_y, cooperative_y, no_of_tractors, rice_husking_machine_y, 
-         chemical_fertilizer_y, insecticides_herbicides_y, irrigated_fields_y, region, ez) %>%
+         chemical_fertilizer_y, insecticides_herbicides_y, irrigated_fields_y, region, ez,
+         farm_area_acres) %>%
   rename(agriculture_profit = agri1c, imputed_income = imprt) %>%
   drop_na()

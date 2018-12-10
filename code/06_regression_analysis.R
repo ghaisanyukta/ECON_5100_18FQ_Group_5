@@ -5,7 +5,7 @@ model1 <- lm(log(agriculture_profit) ~ highest_educ_level
              + public_transport_y + extension_centre_y + cooperative_y
              + no_of_tractors + insecticides_herbicides_y
              + rice_husking_machine_y + chemical_fertilizer_y + irrigated_fields_y
-             + region + ez, data = base)
+             + region + ez + farm_area_acres, data = base)
 summary(model1)
 
 res_model1 <- resid(model1) # extract model residuals
