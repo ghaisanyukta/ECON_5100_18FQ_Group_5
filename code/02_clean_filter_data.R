@@ -24,8 +24,10 @@ highest_educ <- educ_data %>%
   filter(row_number() == 1) 
 
 # Filter out top and bottom 5 rows to eliminate outliers
+# Add an offset of 25,00,000 to remove -ve profit to apply log function
 agri_data <- agg2_data %>%
   arrange(agri1c) %>%
+  mutate(agri1c = agri1c + 2500000) %>%
   filter(row_number() > 5 & row_number() <= n()-5 )
 
 # Get head of households
