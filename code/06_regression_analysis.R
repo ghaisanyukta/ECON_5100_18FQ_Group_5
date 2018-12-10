@@ -1,10 +1,11 @@
 colnames(base)
-model1 <- lm(log(agri1c) ~ highest_educ_level
-             + hh_highest_educ + hh_is_male + ez 
+model1 <- lm(log(agriculture_profit) ~ highest_educ_level
+             + I(hh_highest_educ^2) + hh_is_male + agricultural_activities
              + imputed_income + motorable_road_y + electricity_y + water_y
-             + public_transport_y + extension_centre_y + no_of_tractors
+             + public_transport_y + extension_centre_y + cooperative_y
+             + no_of_tractors + insecticides_herbicides_y
              + rice_husking_machine_y + chemical_fertilizer_y + irrigated_fields_y
-             + region, data = base)
+             + region + ez, data = base)
 summary(model1)
 
 res_model1 <- resid(model1) # extract model residuals
