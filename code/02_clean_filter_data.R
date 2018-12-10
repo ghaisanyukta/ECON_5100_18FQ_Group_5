@@ -81,7 +81,8 @@ infrastructure_data <- cs2_data %>%
          motorable_road_y = if_else(motorable_road_y == 1, 1, 0),
          water_y = if_else(water_y == 1, 1, 0),
          water_y = if_else(water_y == 1, 1, 0),
-         electricity_y = if_else(electricity_y == 1, 1, 0)) %>%
+         electricity_y = if_else(electricity_y == 1, 1, 0),
+         public_transport_y = if_else(public_transport_y == 1, 1, 0)) %>%
   filter(primary_occupation, primary_occupation == "1")
 
 #colnames(cs5b_data)
