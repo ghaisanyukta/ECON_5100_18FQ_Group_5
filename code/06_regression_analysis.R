@@ -1,6 +1,6 @@
 colnames(base)
 model1 <- lm(log(agriculture_profit) ~ highest_educ_level
-             + I(hh_highest_educ^2) + hh_is_male + agricultural_activities
+             + I(hh_highest_educ^2) + hh_is_male + empl_cash_crops_y
              + imputed_income + motorable_road_y + electricity_y + water_y
              + public_transport_y + extension_centre_y + cooperative_y
              + no_of_tractors + insecticides_herbicides_y
