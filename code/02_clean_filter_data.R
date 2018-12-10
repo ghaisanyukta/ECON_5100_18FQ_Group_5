@@ -65,10 +65,9 @@ farm_land_size_data <- sec8b_data %>%
 
 #colnames(cs2_data)
 infrastructure_data <- cs2_data %>%
-  select(region, district, eanum, s2q1a, s2q4, s2q5, s2q8, s2q9, s2q10, s2q11, s2q23, s2q25) %>%
-  rename(primary_occupation = s2q1a, motorable_road = s2q4, motorable_road_distance = s2q5, electricity_y_n = s2q8,
-         electricity_most_few = s2q9, water_y_n = s2q10, water_most_few = s2q11, public_transport_y_n = s2q23,
-         public_transport_distance = s2q25) %>%
+  select(region, district, eanum, s2q1a, s2q4, s2q8, s2q9, s2q10, s2q11, s2q23) %>%
+  rename(primary_occupation = s2q1a, motorable_road = s2q4, electricity_y_n = s2q8,
+         electricity_most_few = s2q9, water_y_n = s2q10, water_most_few = s2q11, public_transport_y_n = s2q23) %>%
   mutate(electricity_most_few = if_else(electricity_y_n == 2, 0, electricity_most_few),
          water_most_few = if_else(water_y_n == 2, 0, water_most_few)) %>%
   filter(primary_occupation, primary_occupation == "1")
@@ -78,6 +77,6 @@ agricultural_practices_data <- cs5b_data %>%
   select(region, district, eanum, s5bq5, s5bq10, s5bq13, s5bq14, s5bq15, s5bq16, s5bq17, s5bq18, s5bq24) %>%
   rename(extension_centre = s5bq5, cooperative = s5bq10,
          no_of_tractors = s5bq13, rice_husking_machine = s5bq14, chemical_fertilizer = s5bq15, 
-         insecticides_herbicides = s5bq16, irrigated_fields = s5bq17, rainfall_more_less = s5bq18)
+         insecticides_herbicides = s5bq16, irrigated_fields = s5bq17, rainfall_more_less = s5bq18, plot_measure_equip = s5bq24)
 
 
