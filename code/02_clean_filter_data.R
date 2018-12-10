@@ -76,6 +76,6 @@ agricultural_practices_data <- cs5b_data %>%
   select(region, district, eanum, s5bq5, s5bq10, s5bq13, s5bq14, s5bq15, s5bq16, s5bq17, s5bq18, s5bq24) %>%
   rename(extension_centre = s5bq5, cooperative = s5bq10,
          no_of_tractors = s5bq13, rice_husking_machine = s5bq14, chemical_fertilizer = s5bq15, 
-         insecticides_herbicides = s5bq16, irrigated_fields = s5bq17, rainfall_more_less = s5bq18)
+         insecticides_herbicides = s5bq16, irrigated_fields = s5bq17, rainfall_more_less = s5bq18, plot_measure_equip = s5bq24)
 
 
