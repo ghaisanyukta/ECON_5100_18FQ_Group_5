@@ -35,7 +35,9 @@ hh_head_data <- sec1_data %>%
 
 # Get gender of household member
 gender_data <- sec1_data %>%
-  select(nh,pid,clust,sex) 
+  select(nh,pid,clust,sex) %>%
+  rename(is_male = sex) %>%
+  mutate(is_male = if_else(is_male == 1, 1, 0))
 
 # Clean and filter employment data if the household member has worked on a farm 
 empl_occupation_data <- sec4a_data %>%

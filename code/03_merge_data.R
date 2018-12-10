@@ -17,15 +17,15 @@ educ_gender_hh_head_employ <- merge(x = educ_gender_hh_head,
 # Education of each household using head of household
 # drop irrelevant columns from "educ_gender_hh_head_employ"
 educ_gender_hh_head_employ <- educ_gender_hh_head_employ %>%
-              select(nh, clust, highest_educ_level, sex, employment_status)
+              select(nh, clust, highest_educ_level, is_male, employment_status)
 
 # Merge aggricultural profit with education by household head 
 agri_hh_educ_gender_employ <- merge(x = agri_data, y = educ_gender_hh_head_employ, by = c('clust','nh'), all.x = TRUE) %>%
-              select(nh, clust, agri1c, hh_highest_educ = highest_educ_level, sex_hh = sex, employment_status)
+              select(nh, clust, agri1c, hh_highest_educ = highest_educ_level, hh_is_male = is_male, employment_status)
 
 # Merge aggricultural profit with highest education in an household
 agri_educ_gender_employ <- merge(x = agri_hh_educ_gender_employ, y = highest_educ, by = c('clust','nh'), all.x = TRUE) %>%
-            select(nh, clust, agri1c, hh_highest_educ, highest_educ_level, sex_hh, employment_status)
+            select(nh, clust, agri1c, hh_highest_educ, highest_educ_level, hh_is_male, employment_status)
 
 #merge two dataframes agri_educ_gender_employ with region_info_data (rural regions)
 agri_educ_gender_employ_region <- merge(agri_educ_gender_employ, region_info_data, by=c("clust","nh"), all.x = TRUE)
