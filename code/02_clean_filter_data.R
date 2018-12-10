@@ -49,11 +49,11 @@ empl_occupation_data <- sec4a_data %>%
                            s4aq6 == 13 | s4aq6 == 14 | s4aq6 == 15 |
                            s4aq6 == 16 | s4aq6 == 17 | s4aq6 == 18 |
                            s4aq6 == 20 | s4aq6 == 21 | s4aq6 == 22 )) %>%
-  mutate(cash_crops_y = case_when(s4aq6 == 12 | s4aq6 == 13 | s4aq6 == 14 |
-                           s4aq6 == 15 | s4aq6 == 16 | s4aq6 == 17 |
-                           s4aq6 == 18 | s4aq6 == 20 | s4aq6 == 21 |
-                           s4aq6 == 22  ~ 0, 
-                           TRUE ~ 1)) %>%
+  mutate(empl_cash_crops_y = case_when(s4aq6 == 12 | s4aq6 == 13 | s4aq6 == 14 |
+                            s4aq6 == 15 | s4aq6 == 16 | s4aq6 == 17 |
+                            s4aq6 == 18 | s4aq6 == 20 | s4aq6 == 21 |
+                            s4aq6 == 22  ~ 0, 
+                            TRUE ~ 1)) %>%
   rename(worked_on_farm = s4aq3, agricultural_activities = s4aq6)
 
 # Clean and filter employment status data
