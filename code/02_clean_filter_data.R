@@ -59,6 +59,8 @@ infrastructure_data <- cs2_data %>%
   rename(primary_occupation = s2q1a, motorable_road = s2q4, motorable_road_distance = s2q5, electricity_y_n = s2q8,
          electricity_most_few = s2q9, water_y_n = s2q10, water_most_few = s2q11, public_transport_y_n = s2q23,
          public_transport_distance = s2q25) %>%
+  mutate(electricity_most_few = if_else(electricity_y_n == 2, 0, electricity_most_few),
+         (water_most_few = if_else(water_y_n == 2, 0, water_most_few))) %>%
   filter(primary_occupation, primary_occupation == "1")
 
 #colnames(cs5b_data)
