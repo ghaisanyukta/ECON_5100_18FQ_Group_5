@@ -61,6 +61,11 @@ farm_land_size_data <- sec8b_data %>%
   select(nh, s8bq4a, s8bq4b, clust) %>%
   rename(farm_land_size = s8bq4a, unite_of_measure = s8bq4b)
 
+# summing up all the land sizes of farm_land_size_data
+# farm_land_size_data <- farm_land_size_data %>% 
+#        group_by(nh, clust) %>% 
+#  summarise(farm_land_size = sum(farm_land_size), 
+#            unite_of_measure = max(unite_of_measure))
 
 # Clean and filter community data
 # Merge using columns region / district / eanum
