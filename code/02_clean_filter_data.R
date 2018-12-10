@@ -42,13 +42,19 @@ gender_data <- sec1_data %>%
   mutate(is_male = if_else(is_male == 1, 1, 0))
 
 # Clean and filter employment data if the household member has worked on a farm 
+# Add a new field cash_crops_y which is true when agricultural activity is a cash crop(1), food crop(0) otherwise
 empl_occupation_data <- sec4a_data %>%
-        select(nh,clust, pid,s4aq3 , s4aq6) %>%
-        filter((s4aq3 == 1) & (s4aq6 == 1 | s4aq6 == 12 | 
-        s4aq6 == 13 | s4aq6 == 14 | s4aq6 == 15 |
-        s4aq6 == 16 | s4aq6 == 17 | s4aq6 == 18 |
-        s4aq6 == 20 | s4aq6 == 21 | s4aq6 == 22 )) %>%
-        rename(worked_on_farm = s4aq3, agricultural_activities = s4aq6)
+  select(nh,clust, pid,s4aq3 , s4aq6) %>%
+  filter((s4aq3 == 1) & (s4aq6 == 1 | s4aq6 == 12 | 
+                           s4aq6 == 13 | s4aq6 == 14 | s4aq6 == 15 |
+                           s4aq6 == 16 | s4aq6 == 17 | s4aq6 == 18 |
+                           s4aq6 == 20 | s4aq6 == 21 | s4aq6 == 22 )) %>%
+  mutate(cash_crops_y = case_when(s4aq6 == 12 | s4aq6 == 13 | s4aq6 == 14 |
+                           s4aq6 == 15 | s4aq6 == 16 | s4aq6 == 17 |
+                           s4aq6 == 18 | s4aq6 == 20 | s4aq6 == 21 |
+                           s4aq6 == 22  ~ 0, 
+                           TRUE ~ 1)) %>%
+  rename(worked_on_farm = s4aq3, agricultural_activities = s4aq6)
 
 # Clean and filter employment status data
 empl_status_data <- sec4b_data %>%
@@ -110,5 +116,3 @@ agricultural_practices_data <- cs5b_data %>%
          chemical_fertilizer_y = if_else(chemical_fertilizer_y == 1, 1, 0),
          insecticides_herbicides_y = if_else(insecticides_herbicides_y == 1, 1, 0),
          irrigated_fields_y = if_else(irrigated_fields_y == 1, 1, 0))
-
-
