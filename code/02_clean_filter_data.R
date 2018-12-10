@@ -37,12 +37,20 @@ hh_head_data <- sec1_data %>%
 gender_data <- sec1_data %>%
   select(nh,pid,clust,sex) 
 
-# Clean and filter employment data
-empl_data <- sec4b_data %>%
+# Clean and filter employment data if the household member has worked on a farm 
+empl_occupation_data <- sec4a_data %>%
+        select(nh,clust, pid,s4aq3 , s4aq6) %>%
+        filter((s4aq3 == 1) & (s4aq6 == 1 | s4aq6 == 12 | 
+        s4aq6 == 13 | s4aq6 == 14 | s4aq6 == 15 |
+        s4aq6 == 16 | s4aq6 == 17 | s4aq6 == 18 |
+        s4aq6 == 20 | s4aq6 == 21 | s4aq6 == 22 )) %>%
+        rename(worked_on_farm = s4aq3, agricultural_activities = s4aq6)
+
+# Clean and filter employment status data
+empl_status_data <- sec4b_data %>%
               select(nh,clust, pid ,s4bq8) %>%
               filter(s4bq8 == 5 | s4bq8 == 6) %>%
               rename(employment_status = s4bq8)
-
 
 # Get size of agricultural lands
 farm_land_size_data <- sec8b_data %>%
