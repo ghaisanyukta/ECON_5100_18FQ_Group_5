@@ -35,12 +35,13 @@ distinct_region_district_eanum <- distinct(region_info_data, region,district,ean
                                   
 
 # Merge infrastructure with region to get clust and nh
-infrastructure_data_region <- merge(x=distinct_region_district_eanum,
+infrastructure_data_region_farming <- merge(x=distinct_region_district_eanum,
                                     y=infrastructure_data,
                                     by=c('region','district','eanum'),
-                                    all.x = TRUE)
+                                    all.x = TRUE) %>%
+                              filter(primary_occupation, primary_occupation == "1")
   
-agricultural_practices_infrastructure_data_region <- merge(x=infrastructure_data_region,
+agricultural_practices_infrastructure_data_region <- merge(x=infrastructure_data_region_farming,
                                      y=agricultural_practices_data,
                                      by=c('region','district','eanum'),
                                      all.x = TRUE)
@@ -56,6 +57,3 @@ agri_educ_gender_employ_region_income_infra_agripractice <- merge(x=agri_educ_ge
                                                all.x = TRUE)
 
 base <- agri_educ_gender_employ_region_income_infra_agripractice
-
-
-  
