@@ -77,6 +77,29 @@ summary(model2a)
 #                           + b14 * rice_husking_machine_y + b15 * chemical_fertilizer_y 
 #                           + b16 * irrigated_fields_y + b17 * region + b18 * ez + b19 * farm_area_acres
 
+summary(model2a)$r.squared
+summary(model2a)$coef
+
+res_model2a <- resid(model2a) # extract model residuals
+std_res_model2a <- rstandard(model2a) #compute regression
+fit_model2a <- fitted(model2a) # 
+
+breaks2a <- pretty(range(std_res_model2a), n = nclass.FD(std_res_model2a), min.n = 1)
+bwidth2a <- breaks1[2]-breaks1[1]
+qplot(std_res_model2a, 
+      geom="histogram", 
+      binwidth = bwidth2a,
+      xlab = "standardized residuals",
+      ylab = "agricultural profit")
+ggsave(here("figures", "Standardized_Histogram1.pdf"))
+
+#xlab("Fitted Residuals"), ylab("Standardized Residuals"),
+ggplot(model2a, 
+       aes(x=fit_model2a, y=std_res_model2a)) +
+  geom_point(shape=1) 
+ggsave(here("figures", "Residuals_VS_Fitted1.pdf"))
+
+
 # model with extra effect of hh_is_male
 model2b <- lm(log(agriculture_profit) ~ highest_educ_level
              + hh_is_male * I(hh_highest_educ^2) + empl_cash_crops_y
@@ -94,6 +117,29 @@ summary(model2b)
 #                           + b14 * rice_husking_machine_y + b15 * chemical_fertilizer_y 
 #                           + b16 * irrigated_fields_y + b17 * region + b18 * ez + b19 * farm_area_acres
 #                           + b20 * 1 * hh_highest_educ^2
+
+summary(model2b)$r.squared
+summary(model2b)$coef
+
+res_model2b <- resid(model2b) # extract model residuals
+std_res_model2b <- rstandard(model2b) #compute regression
+fit_model2b <- fitted(model2b) # 
+
+breaks2b <- pretty(range(std_res_model2b), n = nclass.FD(std_res_model2b), min.n = 1)
+bwidth2b <- breaks1[2]-breaks1[1]
+qplot(std_res_model2b, 
+      geom="histogram", 
+      binwidth = bwidth2b,
+      xlab = "standardized residuals",
+      ylab = "agricultural profit")
+ggsave(here("figures", "Standardized_Histogram1.pdf"))
+
+#xlab("Fitted Residuals"), ylab("Standardized Residuals"),
+ggplot(model2b, 
+       aes(x=fit_model2b, y=std_res_model2b)) +
+  geom_point(shape=1) 
+ggsave(here("figures", "Residuals_VS_Fitted1.pdf"))
+
 
 # model without water_y
 model3a <- lm(log(agriculture_profit) ~ highest_educ_level
