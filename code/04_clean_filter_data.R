@@ -24,7 +24,7 @@ highest_educ <- educ_data %>%
   filter(row_number() == 1) 
 
 # Filter out top and bottom 5 rows to eliminate outliers
-# Add an offset of 25,00,000 to remove -ve profit to apply log function
+# Add an offset of 25,00,000 cedis to remove -ve profit to apply log function
 agri_data <- agg2_data %>%
   arrange(agri1c) %>%
   mutate(agri1c = agri1c + 2500000) %>%
@@ -32,8 +32,8 @@ agri_data <- agg2_data %>%
 
 # Get head of households
 hh_head_data <- sec1_data %>%
-                select(nh, clust, pid, rel) %>%
-                filter(rel, rel == "1")
+  select(nh, clust, pid, rel) %>%
+  filter(rel, rel == "1")
 
 # Get gender of household member
 gender_data <- sec1_data %>%
@@ -42,7 +42,8 @@ gender_data <- sec1_data %>%
   mutate(is_male = if_else(is_male == 1, 1, 0))
 
 # Clean and filter employment data if the household member has worked on a farm 
-# Add a new field cash_crops_y which is true when agricultural activity is a cash crop(1), food crop(0) otherwise
+# Add a new field cash_crops_y which is true when agricultural activity is a cash crop(1), 
+# food crop(0) otherwise
 empl_occupation_data <- sec4a_data %>%
   select(nh,clust, pid,s4aq3 , s4aq6) %>%
   filter((s4aq3 == 1) & (s4aq6 == 1 | s4aq6 == 12 | 
@@ -58,9 +59,9 @@ empl_occupation_data <- sec4a_data %>%
 
 # Clean and filter employment status data
 empl_status_data <- sec4b_data %>%
-              select(nh,clust, pid ,s4bq8) %>%
-              filter(s4bq8 == 5 | s4bq8 == 6) %>%
-              rename(employment_status = s4bq8)
+  select(nh,clust, pid ,s4bq8) %>%
+  filter(s4bq8 == 5 | s4bq8 == 6) %>%
+  rename(employment_status = s4bq8)
 
 # Get size of agricultural lands
 farm_land_size_data <- sec8b_data %>%
@@ -69,9 +70,9 @@ farm_land_size_data <- sec8b_data %>%
   filter(unit_of_measurement,unit_of_measurement != 4)
 
 # convert farm land area to a common unit of measurement (acres)
-farm_land_size_data <- merge(x=farm_land_size_data, 
-                             y=plot_area_conversion, 
-                             by=c('unit_of_measurement'),
+farm_land_size_data <- merge(x = farm_land_size_data, 
+                             y = plot_area_conversion, 
+                             by = c('unit_of_measurement'),
                              all.x = TRUE) 
 
 # summing up all the land sizes of farm_land_size_data

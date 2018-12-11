@@ -114,3 +114,6 @@ b20 <- coef(model1)["base$farm_area_acres"]
 #                           + b14 * rice_husking_machine_y + b15 * chemical_fertilizer_y 
 #                           + b16 * irrigated_fields_y + b17 * region + b18 * 0
 #                           + b19 * 1 + b20 * farm_area_acres
+
+
+
