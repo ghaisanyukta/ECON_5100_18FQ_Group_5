@@ -77,6 +77,29 @@ summary(model2a)
 #                           + b14 * rice_husking_machine_y + b15 * chemical_fertilizer_y 
 #                           + b16 * irrigated_fields_y + b17 * region + b18 * ez + b19 * farm_area_acres
 
+summary(model2a)$r.squared
+summary(model2a)$coef
+
+res_model2a <- resid(model2a) # extract model residuals
+std_res_model2a <- rstandard(model2a) #compute regression
+fit_model2a <- fitted(model2a) # 
+
+breaks2a <- pretty(range(std_res_model2a), n = nclass.FD(std_res_model2a), min.n = 1)
+bwidth2a <- breaks1[2]-breaks1[1]
+qplot(std_res_model2a, 
+      geom="histogram", 
+      binwidth = bwidth2a,
+      xlab = "standardized residuals",
+      ylab = "agricultural profit")
+ggsave(here("figures", "Standardized_Histogram1.pdf"))
+
+#xlab("Fitted Residuals"), ylab("Standardized Residuals"),
+ggplot(model2a, 
+       aes(x=fit_model2a, y=std_res_model2a)) +
+  geom_point(shape=1) 
+ggsave(here("figures", "Residuals_VS_Fitted1.pdf"))
+
+
 # model with extra effect of hh_is_male
 model2b <- lm(log(agriculture_profit) ~ highest_educ_level
              + hh_is_male * I(hh_highest_educ^2) + empl_cash_crops_y
@@ -94,6 +117,29 @@ summary(model2b)
 #                           + b14 * rice_husking_machine_y + b15 * chemical_fertilizer_y 
 #                           + b16 * irrigated_fields_y + b17 * region + b18 * ez + b19 * farm_area_acres
 #                           + b20 * 1 * hh_highest_educ^2
+
+summary(model2b)$r.squared
+summary(model2b)$coef
+
+res_model2b <- resid(model2b) # extract model residuals
+std_res_model2b <- rstandard(model2b) #compute regression
+fit_model2b <- fitted(model2b) # 
+
+breaks2b <- pretty(range(std_res_model2b), n = nclass.FD(std_res_model2b), min.n = 1)
+bwidth2b <- breaks1[2]-breaks1[1]
+qplot(std_res_model2b, 
+      geom="histogram", 
+      binwidth = bwidth2b,
+      xlab = "standardized residuals",
+      ylab = "agricultural profit")
+ggsave(here("figures", "Standardized_Histogram1.pdf"))
+
+#xlab("Fitted Residuals"), ylab("Standardized Residuals"),
+ggplot(model2b, 
+       aes(x=fit_model2b, y=std_res_model2b)) +
+  geom_point(shape=1) 
+ggsave(here("figures", "Residuals_VS_Fitted1.pdf"))
+
 
 # model without water_y
 model3a <- lm(log(agriculture_profit) ~ highest_educ_level
@@ -130,39 +176,7 @@ summary(model4)
 #                           + b16 * irrigated_fields_y + b17 * region + b18 * ez + b19 * farm_area_acres
 
 # model with different ez
-# Consider ez = 3 as the Case 0
-# variable ez_a: 0 if 3, 1 if 1
-# variable ez_b: 0 if 3, 1 if 2
-# ez is 1
 
-# equation would be log(y) = b0 + b1 * highest_educ_level + b2 * hh_highest_educ^2 
-#                           + b3 * hh_is_male + b4 * empl_cash_crops_y + b5 * imputed_income 
-#                           + b6 * motorable_road_y + b7 * electricity_y + b8 * water_y
-#                           + b9 * public_transport_y + b10 * extension_centre_y + b11 * cooperative_y
-#                           + b12 * no_of_tractors + b13 * insecticides_herbicides_y 
-#                           + b14 * rice_husking_machine_y + b15 * chemical_fertilizer_y 
-#                           + b16 * irrigated_fields_y + b17 * region + b18 * 1 
-#                           + b19 * farm_area_acres + b20 * 0
 
-# ez is 2
 
-# equation would be log(y) = b0 + b1 * highest_educ_level + b2 * hh_highest_educ^2 
-#                           + b3 * hh_is_male + b4 * empl_cash_crops_y + b5 * imputed_income 
-#                           + b6 * motorable_road_y + b7 * electricity_y + b8 * water_y
-#                           + b9 * public_transport_y + b10 * extension_centre_y + b11 * cooperative_y
-#                           + b12 * no_of_tractors + b13 * insecticides_herbicides_y 
-#                           + b14 * rice_husking_machine_y + b15 * chemical_fertilizer_y 
-#                           + b16 * irrigated_fields_y + b17 * region + b18 * 0 
-#                           + b19 * farm_area_acres + b20 * 1
-
-# ez is 3
-
-# equation would be log(y) = b0 + b1 * highest_educ_level + b2 * hh_highest_educ^2 
-#                           + b3 * hh_is_male + b4 * empl_cash_crops_y + b5 * imputed_income 
-#                           + b6 * motorable_road_y + b7 * electricity_y + b8 * water_y
-#                           + b9 * public_transport_y + b10 * extension_centre_y + b11 * cooperative_y
-#                           + b12 * no_of_tractors + b13 * insecticides_herbicides_y 
-#                           + b14 * rice_husking_machine_y + b15 * chemical_fertilizer_y 
-#                           + b16 * irrigated_fields_y + b17 * region + b18 * 0 
-#                           + b19 * farm_area_acres + b20 * 0
 
