@@ -130,7 +130,39 @@ summary(model4)
 #                           + b16 * irrigated_fields_y + b17 * region + b18 * ez + b19 * farm_area_acres
 
 # model with different ez
+# Consider ez = 3 as the Case 0
+# variable ez_a: 0 if 3, 1 if 1
+# variable ez_b: 0 if 3, 1 if 2
+# ez is 1
 
+# equation would be log(y) = b0 + b1 * highest_educ_level + b2 * hh_highest_educ^2 
+#                           + b3 * hh_is_male + b4 * empl_cash_crops_y + b5 * imputed_income 
+#                           + b6 * motorable_road_y + b7 * electricity_y + b8 * water_y
+#                           + b9 * public_transport_y + b10 * extension_centre_y + b11 * cooperative_y
+#                           + b12 * no_of_tractors + b13 * insecticides_herbicides_y 
+#                           + b14 * rice_husking_machine_y + b15 * chemical_fertilizer_y 
+#                           + b16 * irrigated_fields_y + b17 * region + b18 * 1 
+#                           + b19 * farm_area_acres + b20 * 0
 
+# ez is 2
 
+# equation would be log(y) = b0 + b1 * highest_educ_level + b2 * hh_highest_educ^2 
+#                           + b3 * hh_is_male + b4 * empl_cash_crops_y + b5 * imputed_income 
+#                           + b6 * motorable_road_y + b7 * electricity_y + b8 * water_y
+#                           + b9 * public_transport_y + b10 * extension_centre_y + b11 * cooperative_y
+#                           + b12 * no_of_tractors + b13 * insecticides_herbicides_y 
+#                           + b14 * rice_husking_machine_y + b15 * chemical_fertilizer_y 
+#                           + b16 * irrigated_fields_y + b17 * region + b18 * 0 
+#                           + b19 * farm_area_acres + b20 * 1
+
+# ez is 3
+
+# equation would be log(y) = b0 + b1 * highest_educ_level + b2 * hh_highest_educ^2 
+#                           + b3 * hh_is_male + b4 * empl_cash_crops_y + b5 * imputed_income 
+#                           + b6 * motorable_road_y + b7 * electricity_y + b8 * water_y
+#                           + b9 * public_transport_y + b10 * extension_centre_y + b11 * cooperative_y
+#                           + b12 * no_of_tractors + b13 * insecticides_herbicides_y 
+#                           + b14 * rice_husking_machine_y + b15 * chemical_fertilizer_y 
+#                           + b16 * irrigated_fields_y + b17 * region + b18 * 0 
+#                           + b19 * farm_area_acres + b20 * 0
 
